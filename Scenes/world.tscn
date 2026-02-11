@@ -4,10 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bhvpnjepvukv6" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 1/2.png" id="2_fo5ed"]
 [ext_resource type="Texture2D" uid="uid://bpeetaj6gxq2c" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 1/3.png" id="3_5ukr8"]
 [ext_resource type="Texture2D" uid="uid://4mdtncwlo0ya" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 1/4.png" id="4_o06y3"]
-[ext_resource type="Texture2D" uid="uid://cqxfskpgdmomn" path="res://Assets/2d-bucket-cartoon-free-png.webp" id="5_fo5ed"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
-size = Vector2(33, 38)
+[ext_resource type="PackedScene" uid="uid://d38u20l4vpyqy" path="res://Scenes/player.tscn" id="5_fo5ed"]
+[ext_resource type="PackedScene" uid="uid://drpsa7awte0bg" path="res://Scenes/fish.tscn" id="6_5ukr8"]
 
 [node name="World" type="Node2D"]
 
@@ -31,17 +29,11 @@ position = Vector2(-1, -0.5)
 scale = Vector2(1.9930556, 1.9969136)
 texture = ExtResource("4_o06y3")
 
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(0, 204)
-scale = Vector2(2, 2)
+[node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("5_fo5ed")
+[node name="Player" parent="." instance=ExtResource("5_fo5ed")]
+position = Vector2(1.9999999, 243)
+scale = Vector2(1.75, 1.75)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(-4.5, 2)
-shape = SubResource("RectangleShape2D_cvnsp")
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, -101.5)
+[node name="Fish" parent="." instance=ExtResource("6_5ukr8")]
+position = Vector2(9, -218)
