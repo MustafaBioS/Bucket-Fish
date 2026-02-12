@@ -13,6 +13,10 @@ script = ExtResource("1_c4ibo")
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_twvwo")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PickupArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 position = Vector2(-7.5, 0.5)
 shape = SubResource("RectangleShape2D_4fqy1")
+
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
