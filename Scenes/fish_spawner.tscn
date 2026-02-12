@@ -1,3 +1,20 @@
-[gd_scene format=3 uid="uid://voanebtu6pwb"]
+[gd_scene load_steps=2 format=3 uid="uid://voanebtu6pwb"]
+
+[ext_resource type="Script" uid="uid://t3sjvg86x1y" path="res://Scripts/fish_spawner.gd" id="1_jmk7y"]
 
 [node name="FishSpawner" type="Node2D"]
+
+[node name="Spawn" type="Node2D" parent="."]
+script = ExtResource("1_jmk7y")
+
+[node name="LeftMarker" type="Marker2D" parent="Spawn"]
+position = Vector2(3, 0)
+
+[node name="RightMarker" type="Marker2D" parent="Spawn"]
+position = Vector2(573, 0)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

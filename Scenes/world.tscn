@@ -1,24 +1,40 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1g550dy3104k"]
+[gd_scene load_steps=9 format=3 uid="uid://b1g550dy3104k"]
 
 [ext_resource type="Texture2D" uid="uid://c3ajkxqb2txas" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 1/1.png" id="1_8j60k"]
 [ext_resource type="Script" uid="uid://bu46let2b103a" path="res://Scripts/parallax.gd" id="1_o06y3"]
 [ext_resource type="Texture2D" uid="uid://bhvpnjepvukv6" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 1/2.png" id="2_fo5ed"]
+[ext_resource type="Script" uid="uid://t3sjvg86x1y" path="res://Scripts/fish_spawner.gd" id="2_o06y3"]
 [ext_resource type="Texture2D" uid="uid://bpeetaj6gxq2c" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 1/3.png" id="3_5ukr8"]
 [ext_resource type="Texture2D" uid="uid://4mdtncwlo0ya" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 1/4.png" id="4_o06y3"]
 [ext_resource type="PackedScene" uid="uid://d38u20l4vpyqy" path="res://Scenes/player.tscn" id="5_fo5ed"]
-[ext_resource type="PackedScene" uid="uid://drpsa7awte0bg" path="res://Scenes/fish.tscn" id="6_5ukr8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o06y3"]
+size = Vector2(24, 332)
 
 [node name="World" type="Node2D"]
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(-32, 162)
+limit_left = -320
+limit_right = 256
 
 [node name="Player" parent="." instance=ExtResource("5_fo5ed")]
-position = Vector2(-30, 277)
+position = Vector2(-30, 285)
 
-[node name="Fish" parent="." instance=ExtResource("6_5ukr8")]
-position = Vector2(-32, 61)
-scale = Vector2(0.65, 0.65)
+[node name="FishSpawner" type="Node2D" parent="."]
+
+[node name="Spawn" type="Node2D" parent="FishSpawner"]
+script = ExtResource("2_o06y3")
+
+[node name="LeftMarker" type="Marker2D" parent="FishSpawner/Spawn"]
+position = Vector2(-284, 0)
+
+[node name="RightMarker" type="Marker2D" parent="FishSpawner/Spawn"]
+position = Vector2(220, 0)
+
+[node name="Timer" type="Timer" parent="FishSpawner"]
+wait_time = 2.0
+autostart = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 script = ExtResource("1_o06y3")
@@ -53,3 +69,15 @@ motion_mirroring = Vector2(576, 0)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
 texture = ExtResource("4_o06y3")
 centered = false
+
+[node name="Borders" type="StaticBody2D" parent="."]
+
+[node name="LeftBorder" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-332, 156)
+shape = SubResource("RectangleShape2D_o06y3")
+
+[node name="RightBorder" type="CollisionShape2D" parent="Borders"]
+position = Vector2(268, 156)
+shape = SubResource("RectangleShape2D_o06y3")
+
+[connection signal="timeout" from="FishSpawner/Timer" to="FishSpawner/Spawn" method="_on_timer_timeout"]
