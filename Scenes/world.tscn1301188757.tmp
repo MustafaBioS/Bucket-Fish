@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://b1g550dy3104k"]
 
 [ext_resource type="Texture2D" uid="uid://c3ajkxqb2txas" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 1/1.png" id="1_8j60k"]
-[ext_resource type="Script" uid="uid://bu46let2b103a" path="res://Scripts/parallax.gd" id="1_o06y3"]
+[ext_resource type="Script" uid="uid://bu46let2b103a" path="res://Scripts/camera.gd" id="1_o06y3"]
 [ext_resource type="Texture2D" uid="uid://bhvpnjepvukv6" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 1/2.png" id="2_fo5ed"]
 [ext_resource type="Texture2D" uid="uid://bpeetaj6gxq2c" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 1/3.png" id="3_5ukr8"]
 [ext_resource type="Texture2D" uid="uid://4mdtncwlo0ya" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 1/4.png" id="4_o06y3"]
@@ -11,7 +11,7 @@
 [node name="World" type="Node2D"]
 
 [node name="Camera" type="Camera2D" parent="."]
-position = Vector2(-32, 162)
+position = Vector2(-32, 163)
 
 [node name="Player" parent="." instance=ExtResource("5_fo5ed")]
 position = Vector2(-30, 277)
