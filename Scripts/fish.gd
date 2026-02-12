@@ -5,9 +5,12 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	move_and_slide()
-
+	
+	if position.y > 1000:
+		queue_free()
 
 func _on_pickup_area_body_entered(body: Node2D) -> void:
-	State.score += 1
-	print(State.score)
-	queue_free()
+	if body.has_method("player"):
+		State.score += 1
+		print(State.score)
+		queue_free()
