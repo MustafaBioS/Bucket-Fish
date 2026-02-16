@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bcfjtb3wj5yvv"]
+[gd_scene load_steps=17 format=3 uid="uid://bcfjtb3wj5yvv"]
 
 [ext_resource type="Script" uid="uid://ddrfj654ua0nj" path="res://Scripts/menu.gd" id="1_wbdvm"]
 [ext_resource type="Script" uid="uid://bu46let2b103a" path="res://Scripts/parallax.gd" id="1_wwsa2"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bkv6aov24k1no" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 3/3.png" id="4_wbdvm"]
 [ext_resource type="Texture2D" uid="uid://cr3u2gjf6aajp" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 3/4.png" id="5_q3rjx"]
 [ext_resource type="FontFile" uid="uid://b83xwi28j7vqi" path="res://Assets/Fonts/Almond Milky.otf" id="6_jsrd8"]
-[ext_resource type="Texture2D" uid="uid://cqxfskpgdmomn" path="res://Assets/2d-bucket-cartoon-free-png.webp" id="8_q3rjx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jsrd8"]
 bg_color = Color(1, 0.9529412, 0.73333335, 1)
@@ -32,21 +31,25 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jsrd8"]
 
-[sub_resource type="Curve" id="Curve_q3rjx"]
-_data = [Vector2(0.3333333, 0.39325845), 0.0, 0.0, 0, 0, Vector2(0.95454544, 0.68539333), 0.0, 0.0, 0, 0]
-point_count = 2
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6swd7"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
-[sub_resource type="CurveTexture" id="CurveTexture_6swd7"]
-curve = SubResource("Curve_q3rjx")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wbdvm"]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wbdvm"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(576, 10, 1)
-gravity = Vector3(0, 90, 0)
-scale_min = 0.02
-scale_max = 0.02
-scale_curve = SubResource("CurveTexture_6swd7")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q3rjx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6swd7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7qvly"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -122,15 +125,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -59.0
-offset_top = -39.0
-offset_right = 59.0
-offset_bottom = 95.0
+offset_left = -51.0
+offset_top = -33.0
+offset_right = 51.0
+offset_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Play" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -146,7 +149,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
 text = "Play"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="Options" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -162,7 +165,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
 text = "Options"
 
-[node name="Button3" type="Button" parent="VBoxContainer"]
+[node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -178,12 +181,49 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
 text = "Exit"
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 50
-texture = ExtResource("8_q3rjx")
-lifetime = 3.0
-process_material = SubResource("ParticleProcessMaterial_wbdvm")
+[node name="OptionsPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -177.0
+offset_top = -125.0
+offset_right = 177.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6swd7")
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[node name="Title" type="Label" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -53.0
+offset_top = 31.0
+offset_right = 53.0
+offset_bottom = 68.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 30
+text = "Options"
+
+[node name="Back" type="Button" parent="OptionsPanel"]
+layout_mode = 0
+offset_left = 28.0
+offset_right = 74.0
+offset_bottom = 67.0
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wbdvm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6swd7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qvly")
+text = "←"
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="OptionsPanel/Back" to="." method="_on_back_pressed"]

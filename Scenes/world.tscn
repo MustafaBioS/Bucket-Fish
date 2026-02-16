@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1g550dy3104k"]
+[gd_scene load_steps=17 format=3 uid="uid://b1g550dy3104k"]
 
 [ext_resource type="Script" uid="uid://bu46let2b103a" path="res://Scripts/parallax.gd" id="1_o06y3"]
 [ext_resource type="Script" uid="uid://t3sjvg86x1y" path="res://Scripts/fish_spawner.gd" id="2_o06y3"]
@@ -7,9 +7,36 @@
 [ext_resource type="Texture2D" uid="uid://dgkp56xtv1hoq" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 2/2.png" id="5_k7acu"]
 [ext_resource type="Texture2D" uid="uid://1xqw1d3r8rmg" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 2/3.png" id="6_5v1tr"]
 [ext_resource type="Texture2D" uid="uid://sm7t0fuwl13p" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 2/4.png" id="7_0fj1v"]
+[ext_resource type="Script" uid="uid://drp4d00e1ypw0" path="res://Scripts/hud.gd" id="8_5v1tr"]
+[ext_resource type="FontFile" uid="uid://b83xwi28j7vqi" path="res://Assets/Fonts/Almond Milky.otf" id="8_k7acu"]
+[ext_resource type="Script" uid="uid://cgnk2qgldr6qj" path="res://Scripts/pause.gd" id="10_0fj1v"]
+[ext_resource type="Texture2D" uid="uid://cdmkk4qh82svx" path="res://Assets/Hearts/Heart.png" id="10_ikia7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o06y3"]
 size = Vector2(24, 332)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5v1tr"]
+bg_color = Color(1, 0.9529412, 0.73333335, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0fj1v"]
+bg_color = Color(0.99999994, 0.8915559, 0.39249247, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikia7"]
+bg_color = Color(1, 0.9347987, 0.6335725, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7yui6"]
 
 [node name="World" type="Node2D"]
 
@@ -80,4 +107,154 @@ shape = SubResource("RectangleShape2D_o06y3")
 position = Vector2(268, 156)
 shape = SubResource("RectangleShape2D_o06y3")
 
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("8_5v1tr")
+
+[node name="Score" type="Label" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -154.0
+offset_top = 22.0
+offset_right = -7.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_k7acu")
+theme_override_font_sizes/font_size = 23
+text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Hearts" type="HBoxContainer" parent="HUD"]
+offset_left = 23.0
+offset_top = 21.0
+offset_right = 415.0
+offset_bottom = 149.0
+scale = Vector2(0.2, 0.2)
+alignment = 1
+
+[node name="Heart1" type="TextureRect" parent="HUD/Hearts"]
+layout_mode = 2
+texture = ExtResource("10_ikia7")
+
+[node name="Heart2" type="TextureRect" parent="HUD/Hearts"]
+layout_mode = 2
+texture = ExtResource("10_ikia7")
+
+[node name="Heart3" type="TextureRect" parent="HUD/Hearts"]
+layout_mode = 2
+texture = ExtResource("10_ikia7")
+
+[node name="Pause" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("10_0fj1v")
+
+[node name="Overlay" type="Panel" parent="Pause"]
+modulate = Color(1, 1, 1, 0.84313726)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Pause"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -102.0
+offset_top = 32.0
+offset_right = 102.0
+offset_bottom = 81.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.9529412, 0.73333335, 1)
+theme_override_fonts/font = ExtResource("8_k7acu")
+theme_override_font_sizes/font_size = 40
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -62.0
+offset_right = 54.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Resume" type="Button" parent="Pause/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_k7acu")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_5v1tr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0fj1v")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ikia7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7yui6")
+text = "Resume"
+
+[node name="Options" type="Button" parent="Pause/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_k7acu")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_5v1tr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0fj1v")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ikia7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7yui6")
+text = "Options"
+
+[node name="Menu" type="Button" parent="Pause/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_k7acu")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_5v1tr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0fj1v")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ikia7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7yui6")
+text = "Main Menu"
+
+[node name="Exit" type="Button" parent="Pause/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_k7acu")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_5v1tr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0fj1v")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ikia7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7yui6")
+text = "Exit"
+
 [connection signal="timeout" from="FishSpawner/Timer" to="FishSpawner/Spawn" method="_on_timer_timeout"]
+[connection signal="pressed" from="Pause/VBoxContainer/Resume" to="Pause" method="_on_resume_pressed"]
+[connection signal="pressed" from="Pause/VBoxContainer/Options" to="Pause" method="_on_options_pressed"]
+[connection signal="pressed" from="Pause/VBoxContainer/Menu" to="Pause" method="_on_menu_pressed"]
+[connection signal="pressed" from="Pause/VBoxContainer/Exit" to="Pause" method="_on_exit_pressed"]
