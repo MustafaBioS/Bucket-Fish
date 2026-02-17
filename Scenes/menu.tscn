@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bcfjtb3wj5yvv"]
+[gd_scene load_steps=26 format=3 uid="uid://bcfjtb3wj5yvv"]
 
 [ext_resource type="Script" uid="uid://ddrfj654ua0nj" path="res://Scripts/menu.gd" id="1_wbdvm"]
 [ext_resource type="Script" uid="uid://bu46let2b103a" path="res://Scripts/parallax.gd" id="1_wwsa2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bkv6aov24k1no" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 3/3.png" id="4_wbdvm"]
 [ext_resource type="Texture2D" uid="uid://cr3u2gjf6aajp" path="res://Assets/free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 3/4.png" id="5_q3rjx"]
 [ext_resource type="FontFile" uid="uid://b83xwi28j7vqi" path="res://Assets/Fonts/Almond Milky.otf" id="6_jsrd8"]
+[ext_resource type="Script" uid="uid://ckb8uvaxpwf3v" path="res://Scripts/volume.gd" id="8_q3rjx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jsrd8"]
 bg_color = Color(1, 0.9529412, 0.73333335, 1)
@@ -50,6 +51,85 @@ corner_radius_bottom_left = 12
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6swd7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7qvly"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_wbdvm"]
+color = Color(1, 1, 1, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_q3rjx"]
+color = Color(3.1766297e-06, 0.5508129, 0.8178559, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_6swd7"]
+color = Color(3.1766297e-06, 0.5508129, 0.8178559, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7qvly"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_q3rjx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeIn:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FadeOut:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g8i7c"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeIn:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rfqti"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeOut:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_23t3j"]
+_data = {
+&"RESET": SubResource("Animation_q3rjx"),
+&"fade_in": SubResource("Animation_g8i7c"),
+&"fade_out": SubResource("Animation_rfqti")
+}
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -188,10 +268,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -177.0
-offset_top = -125.0
-offset_right = 177.0
-offset_bottom = 125.0
+offset_left = -184.0
+offset_top = -128.0
+offset_right = 184.0
+offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6swd7")
@@ -202,9 +282,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -53.0
-offset_top = 31.0
+offset_top = 20.0
 offset_right = 53.0
-offset_bottom = 68.0
+offset_bottom = 57.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("6_jsrd8")
 theme_override_font_sizes/font_size = 30
@@ -223,7 +303,134 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_6swd7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7qvly")
 text = "←"
 
+[node name="BtnCon" type="HBoxContainer" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -64.0
+offset_right = 80.0
+offset_bottom = -36.16668
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="Audio" type="Button" parent="OptionsPanel/BtnCon"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+text = "Audio"
+
+[node name="Screen" type="Button" parent="OptionsPanel/BtnCon"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+text = "Screen"
+
+[node name="AudioCon" type="Control" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8_q3rjx")
+
+[node name="MasterTitle" type="Label" parent="OptionsPanel/AudioCon"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -59.0
+offset_top = 108.0
+offset_right = 59.0
+offset_bottom = 131.0
+grow_horizontal = 2
+text = "Master Volume"
+
+[node name="MasterSlider" type="HSlider" parent="OptionsPanel/AudioCon"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = 7.0
+offset_right = 83.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/slider = SubResource("StyleBoxLine_wbdvm")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_q3rjx")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_6swd7")
+value = 50.0
+
+[node name="ScreenCon" type="Control" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="FadeIn" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7qvly")
+
+[node name="FadeOut" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7qvly")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_23t3j")
+}
+
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="OptionsPanel/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="OptionsPanel/BtnCon/Audio" to="." method="_on_audio_pressed"]
+[connection signal="pressed" from="OptionsPanel/BtnCon/Screen" to="." method="_on_screen_pressed"]
+[connection signal="value_changed" from="OptionsPanel/AudioCon/MasterSlider" to="OptionsPanel/AudioCon" method="_on_master_slider_value_changed"]
