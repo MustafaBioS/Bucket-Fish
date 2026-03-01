@@ -16,7 +16,7 @@ func spawn():
 	if State.paused == false:
 		var roll = randf()
 		var scene
-		if roll < 0.70:
+		if roll < 0.60:
 			scene = fish
 		else:
 			scene = coin

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bcfjtb3wj5yvv"]
+[gd_scene load_steps=39 format=3 uid="uid://bcfjtb3wj5yvv"]
 
 [ext_resource type="Script" uid="uid://ddrfj654ua0nj" path="res://Scripts/menu.gd" id="1_wbdvm"]
 [ext_resource type="Script" uid="uid://bu46let2b103a" path="res://Scripts/parallax.gd" id="1_wwsa2"]
@@ -9,6 +9,15 @@
 [ext_resource type="FontFile" uid="uid://b83xwi28j7vqi" path="res://Assets/Fonts/Almond Milky.otf" id="6_jsrd8"]
 [ext_resource type="Script" uid="uid://ckb8uvaxpwf3v" path="res://Scripts/volume.gd" id="8_q3rjx"]
 [ext_resource type="Script" uid="uid://bd2et6ewis3e8" path="res://Scripts/fullscreen.gd" id="9_6swd7"]
+[ext_resource type="Texture2D" uid="uid://b4hympioowk6i" path="res://Assets/Buckets/bucket-default.webp" id="10_7qvly"]
+[ext_resource type="Script" uid="uid://dy8pjckvjtl2p" path="res://Scripts/shopl.gd" id="10_rc6uw"]
+[ext_resource type="Texture2D" uid="uid://dsl4ghuyfmmqm" path="res://Assets/Buckets/bucket-green.png" id="11_g8i7c"]
+[ext_resource type="Texture2D" uid="uid://cesoqscqbse55" path="res://Assets/Buckets/bucket-pink.png" id="12_23t3j"]
+[ext_resource type="Texture2D" uid="uid://bd3cuok8yqy0m" path="res://Assets/Buckets/bucket-red.png" id="13_8ph6h"]
+[ext_resource type="Texture2D" uid="uid://bbc6ukgl4wry6" path="res://Assets/Fishs/fish-default.png" id="14_5ti5v"]
+[ext_resource type="Texture2D" uid="uid://07vcy2ir07ah" path="res://Assets/Fishs/fish-green.png" id="15_kmwmt"]
+[ext_resource type="Texture2D" uid="uid://dpfdslnxkhonu" path="res://Assets/Fishs/fish-pink.png" id="16_rc6uw"]
+[ext_resource type="Texture2D" uid="uid://dv40xv7hsqab" path="res://Assets/Fishs/fish-red.png" id="17_dldpb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jsrd8"]
 bg_color = Color(1, 0.9529412, 0.73333335, 1)
@@ -78,6 +87,13 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g8i7c"]
+bg_color = Color(0.5132323, 0.43656865, 9.62615e-08, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7qvly"]
 bg_color = Color(0, 0, 0, 1)
@@ -293,6 +309,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
 text = "Exit"
 
 [node name="OptionsPanel" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -536,7 +553,6 @@ text = "Fullscreen"
 script = ExtResource("9_6swd7")
 
 [node name="ShopPanel" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -550,8 +566,9 @@ offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6swd7")
+script = ExtResource("10_rc6uw")
 
-[node name="Customize" type="Label" parent="ShopPanel"]
+[node name="ShopTitle" type="Label" parent="ShopPanel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -565,7 +582,7 @@ theme_override_fonts/font = ExtResource("6_jsrd8")
 theme_override_font_sizes/font_size = 30
 text = "Shop Items"
 
-[node name="Back" type="Button" parent="ShopPanel"]
+[node name="ShopBack" type="Button" parent="ShopPanel"]
 layout_mode = 0
 offset_left = 28.0
 offset_right = 74.0
@@ -578,7 +595,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_6swd7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7qvly")
 text = "←"
 
-[node name="BtnCon" type="HBoxContainer" parent="ShopPanel"]
+[node name="BtnContainer" type="HBoxContainer" parent="ShopPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -593,7 +610,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 6
 
-[node name="Bucket" type="Button" parent="ShopPanel/BtnCon"]
+[node name="Bucket" type="Button" parent="ShopPanel/BtnContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -610,7 +627,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
 text = "Bucket"
 
-[node name="Fish" type="Button" parent="ShopPanel/BtnCon"]
+[node name="Fish" type="Button" parent="ShopPanel/BtnContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -627,7 +644,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
 text = "Fish"
 
-[node name="BucketCon" type="Control" parent="ShopPanel"]
+[node name="BucketContainer" type="Control" parent="ShopPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -636,53 +653,360 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ShopItem" type="Panel" parent="ShopPanel/BucketCon"]
+[node name="ShopItem" type="Panel" parent="ShopPanel/BucketContainer"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 35.0
+offset_left = 17.0
 offset_top = -23.0
-offset_right = 97.5
-offset_bottom = 52.0
+offset_right = 92.5
+offset_bottom = 78.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rfqti")
 
-[node name="ShopItem2" type="Panel" parent="ShopPanel/BucketCon"]
+[node name="Item" type="TextureRect" parent="ShopPanel/BucketContainer/ShopItem"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.75
+offset_top = -42.5
+offset_right = 38.75
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_7qvly")
+expand_mode = 3
+
+[node name="Price" type="RichTextLabel" parent="ShopPanel/BucketContainer/ShopItem"]
+layout_mode = 0
+offset_left = 31.000008
+offset_top = 51.0
+offset_right = 65.00001
+offset_bottom = 71.0
+scale = Vector2(0.4, 0.4)
+theme_override_fonts/normal_font = ExtResource("6_jsrd8")
+theme_override_fonts/bold_font = ExtResource("6_jsrd8")
+theme_override_fonts/bold_italics_font = ExtResource("6_jsrd8")
+theme_override_fonts/italics_font = ExtResource("6_jsrd8")
+theme_override_fonts/mono_font = ExtResource("6_jsrd8")
+bbcode_enabled = true
+text = "0 [img=16x16]res://Assets/coin.png[/img]"
+
+[node name="BtnContainer" type="VBoxContainer" parent="ShopPanel/BucketContainer/ShopItem"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -38.000008
+offset_right = 168.33331
+offset_bottom = 55.333374
+grow_vertical = 0
+scale = Vector2(0.3, 0.3)
+theme_override_constants/separation = 10
+
+[node name="Equip" type="Button" parent="ShopPanel/BucketContainer/ShopItem/BtnContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0.5019608)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_g8i7c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+disabled = true
+text = "Equipped"
+
+[node name="Purchase" type="Button" parent="ShopPanel/BucketContainer/ShopItem/BtnContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+text = "Purchase"
+
+[node name="ShopItem2" type="Panel" parent="ShopPanel/BucketContainer"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 115.0
+offset_left = 104.0
 offset_top = -23.0
-offset_right = 177.5
-offset_bottom = 52.0
+offset_right = 179.5
+offset_bottom = 78.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rfqti")
 
-[node name="ShopItem3" type="Panel" parent="ShopPanel/BucketCon"]
+[node name="Item" type="TextureRect" parent="ShopPanel/BucketContainer/ShopItem2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.75
+offset_top = -42.5
+offset_right = 38.75
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_g8i7c")
+expand_mode = 3
+
+[node name="Price" type="RichTextLabel" parent="ShopPanel/BucketContainer/ShopItem2"]
+layout_mode = 0
+offset_left = 31.000008
+offset_top = 51.0
+offset_right = 65.00001
+offset_bottom = 71.0
+scale = Vector2(0.4, 0.4)
+theme_override_fonts/normal_font = ExtResource("6_jsrd8")
+theme_override_fonts/bold_font = ExtResource("6_jsrd8")
+theme_override_fonts/bold_italics_font = ExtResource("6_jsrd8")
+theme_override_fonts/italics_font = ExtResource("6_jsrd8")
+theme_override_fonts/mono_font = ExtResource("6_jsrd8")
+bbcode_enabled = true
+text = "1 [img=16x16]res://Assets/coin.png[/img]"
+
+[node name="BtnContainer" type="VBoxContainer" parent="ShopPanel/BucketContainer/ShopItem2"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -38.000008
+offset_right = 168.33331
+offset_bottom = 55.333374
+grow_vertical = 0
+scale = Vector2(0.3, 0.3)
+theme_override_constants/separation = 10
+
+[node name="Equip" type="Button" parent="ShopPanel/BucketContainer/ShopItem2/BtnContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+text = "Equip"
+
+[node name="Purchase" type="Button" parent="ShopPanel/BucketContainer/ShopItem2/BtnContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+text = "Purchase"
+
+[node name="ShopItem3" type="Panel" parent="ShopPanel/BucketContainer"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 195.0
+offset_left = 190.0
 offset_top = -23.0
-offset_right = 257.5
-offset_bottom = 52.0
+offset_right = 265.5
+offset_bottom = 78.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rfqti")
 
-[node name="ShopItem4" type="Panel" parent="ShopPanel/BucketCon"]
+[node name="Item" type="TextureRect" parent="ShopPanel/BucketContainer/ShopItem3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.75
+offset_top = -42.5
+offset_right = 38.75
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_23t3j")
+expand_mode = 3
+
+[node name="Price" type="RichTextLabel" parent="ShopPanel/BucketContainer/ShopItem3"]
+layout_mode = 0
+offset_left = 31.000008
+offset_top = 51.0
+offset_right = 65.00001
+offset_bottom = 71.0
+scale = Vector2(0.4, 0.4)
+theme_override_fonts/normal_font = ExtResource("6_jsrd8")
+theme_override_fonts/bold_font = ExtResource("6_jsrd8")
+theme_override_fonts/bold_italics_font = ExtResource("6_jsrd8")
+theme_override_fonts/italics_font = ExtResource("6_jsrd8")
+theme_override_fonts/mono_font = ExtResource("6_jsrd8")
+bbcode_enabled = true
+text = "2 [img=16x16]res://Assets/coin.png[/img]"
+
+[node name="BtnContainer" type="VBoxContainer" parent="ShopPanel/BucketContainer/ShopItem3"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -38.000008
+offset_right = 168.33331
+offset_bottom = 55.333374
+grow_vertical = 0
+scale = Vector2(0.3, 0.3)
+theme_override_constants/separation = 10
+
+[node name="Equip" type="Button" parent="ShopPanel/BucketContainer/ShopItem3/BtnContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+text = "Equip"
+
+[node name="Purchase" type="Button" parent="ShopPanel/BucketContainer/ShopItem3/BtnContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+text = "Purchase"
+
+[node name="ShopItem4" type="Panel" parent="ShopPanel/BucketContainer"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 275.0
+offset_left = 277.0
 offset_top = -23.0
-offset_right = 337.5
-offset_bottom = 52.0
+offset_right = 352.5
+offset_bottom = 78.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rfqti")
+
+[node name="Item" type="TextureRect" parent="ShopPanel/BucketContainer/ShopItem4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.75
+offset_top = -42.5
+offset_right = 38.75
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_8ph6h")
+expand_mode = 3
+
+[node name="Price" type="RichTextLabel" parent="ShopPanel/BucketContainer/ShopItem4"]
+layout_mode = 0
+offset_left = 31.000008
+offset_top = 51.0
+offset_right = 65.00001
+offset_bottom = 71.0
+scale = Vector2(0.4, 0.4)
+theme_override_fonts/normal_font = ExtResource("6_jsrd8")
+theme_override_fonts/bold_font = ExtResource("6_jsrd8")
+theme_override_fonts/bold_italics_font = ExtResource("6_jsrd8")
+theme_override_fonts/italics_font = ExtResource("6_jsrd8")
+theme_override_fonts/mono_font = ExtResource("6_jsrd8")
+bbcode_enabled = true
+text = "3 [img=16x16]res://Assets/coin.png[/img]"
+
+[node name="BtnContainer" type="VBoxContainer" parent="ShopPanel/BucketContainer/ShopItem4"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -38.000008
+offset_right = 168.33331
+offset_bottom = 55.333374
+grow_vertical = 0
+scale = Vector2(0.3, 0.3)
+theme_override_constants/separation = 10
+
+[node name="Equip" type="Button" parent="ShopPanel/BucketContainer/ShopItem4/BtnContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+text = "Equip"
+
+[node name="Purchase" type="Button" parent="ShopPanel/BucketContainer/ShopItem4/BtnContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+text = "Purchase"
 
 [node name="FishCon" type="Control" parent="ShopPanel"]
 layout_mode = 1
@@ -697,11 +1021,360 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="ShopPanel/FishCon"]
+[node name="ShopItem" type="Panel" parent="ShopPanel/FishCon"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 17.0
+offset_top = -23.0
+offset_right = 92.5
+offset_bottom = 78.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rfqti")
+
+[node name="Item" type="TextureRect" parent="ShopPanel/FishCon/ShopItem"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.75
+offset_top = -50.5
+offset_right = 27.75
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_5ti5v")
+expand_mode = 5
+
+[node name="Price" type="RichTextLabel" parent="ShopPanel/FishCon/ShopItem"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "fish"
+offset_left = 31.000008
+offset_top = 51.0
+offset_right = 65.00001
+offset_bottom = 71.0
+scale = Vector2(0.4, 0.4)
+theme_override_fonts/normal_font = ExtResource("6_jsrd8")
+theme_override_fonts/bold_font = ExtResource("6_jsrd8")
+theme_override_fonts/bold_italics_font = ExtResource("6_jsrd8")
+theme_override_fonts/italics_font = ExtResource("6_jsrd8")
+theme_override_fonts/mono_font = ExtResource("6_jsrd8")
+bbcode_enabled = true
+text = "0 [img=16x16]res://Assets/coin.png[/img]"
+
+[node name="BtnContainer" type="VBoxContainer" parent="ShopPanel/FishCon/ShopItem"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -38.000008
+offset_right = 168.33331
+offset_bottom = 55.333374
+grow_vertical = 0
+scale = Vector2(0.3, 0.3)
+theme_override_constants/separation = 10
+
+[node name="Equip" type="Button" parent="ShopPanel/FishCon/ShopItem/BtnContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0.5019608)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_g8i7c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+disabled = true
+text = "Equipped"
+
+[node name="Purchase" type="Button" parent="ShopPanel/FishCon/ShopItem/BtnContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+text = "Purchase"
+
+[node name="ShopItem2" type="Panel" parent="ShopPanel/FishCon"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 104.0
+offset_top = -23.0
+offset_right = 179.5
+offset_bottom = 78.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rfqti")
+
+[node name="Item" type="TextureRect" parent="ShopPanel/FishCon/ShopItem2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.75
+offset_top = -50.5
+offset_right = 27.75
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_kmwmt")
+expand_mode = 5
+
+[node name="Price" type="RichTextLabel" parent="ShopPanel/FishCon/ShopItem2"]
+layout_mode = 0
+offset_left = 31.000008
+offset_top = 51.0
+offset_right = 65.00001
+offset_bottom = 71.0
+scale = Vector2(0.4, 0.4)
+theme_override_fonts/normal_font = ExtResource("6_jsrd8")
+theme_override_fonts/bold_font = ExtResource("6_jsrd8")
+theme_override_fonts/bold_italics_font = ExtResource("6_jsrd8")
+theme_override_fonts/italics_font = ExtResource("6_jsrd8")
+theme_override_fonts/mono_font = ExtResource("6_jsrd8")
+bbcode_enabled = true
+text = "1 [img=16x16]res://Assets/coin.png[/img]"
+
+[node name="BtnContainer" type="VBoxContainer" parent="ShopPanel/FishCon/ShopItem2"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -38.000008
+offset_right = 168.33331
+offset_bottom = 55.333374
+grow_vertical = 0
+scale = Vector2(0.3, 0.3)
+theme_override_constants/separation = 10
+
+[node name="Equip" type="Button" parent="ShopPanel/FishCon/ShopItem2/BtnContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+text = "Equip"
+
+[node name="Purchase" type="Button" parent="ShopPanel/FishCon/ShopItem2/BtnContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+text = "Purchase"
+
+[node name="ShopItem3" type="Panel" parent="ShopPanel/FishCon"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 190.0
+offset_top = -23.0
+offset_right = 265.5
+offset_bottom = 78.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rfqti")
+
+[node name="Item" type="TextureRect" parent="ShopPanel/FishCon/ShopItem3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.75
+offset_top = -50.5
+offset_right = 27.75
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_rc6uw")
+expand_mode = 5
+
+[node name="Price" type="RichTextLabel" parent="ShopPanel/FishCon/ShopItem3"]
+layout_mode = 0
+offset_left = 31.000008
+offset_top = 51.0
+offset_right = 65.00001
+offset_bottom = 71.0
+scale = Vector2(0.4, 0.4)
+theme_override_fonts/normal_font = ExtResource("6_jsrd8")
+theme_override_fonts/bold_font = ExtResource("6_jsrd8")
+theme_override_fonts/bold_italics_font = ExtResource("6_jsrd8")
+theme_override_fonts/italics_font = ExtResource("6_jsrd8")
+theme_override_fonts/mono_font = ExtResource("6_jsrd8")
+bbcode_enabled = true
+text = "2 [img=16x16]res://Assets/coin.png[/img]"
+
+[node name="BtnContainer" type="VBoxContainer" parent="ShopPanel/FishCon/ShopItem3"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -38.000008
+offset_right = 168.33331
+offset_bottom = 55.333374
+grow_vertical = 0
+scale = Vector2(0.3, 0.3)
+theme_override_constants/separation = 10
+
+[node name="Equip" type="Button" parent="ShopPanel/FishCon/ShopItem3/BtnContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+text = "Equip"
+
+[node name="Purchase" type="Button" parent="ShopPanel/FishCon/ShopItem3/BtnContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+text = "Purchase"
+
+[node name="ShopItem4" type="Panel" parent="ShopPanel/FishCon"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 277.0
+offset_top = -23.0
+offset_right = 352.5
+offset_bottom = 78.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rfqti")
+
+[node name="Item" type="TextureRect" parent="ShopPanel/FishCon/ShopItem4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.75
+offset_top = -50.5
+offset_right = 27.75
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_dldpb")
+expand_mode = 5
+
+[node name="Price" type="RichTextLabel" parent="ShopPanel/FishCon/ShopItem4"]
+layout_mode = 0
+offset_left = 31.000008
+offset_top = 51.0
+offset_right = 65.00001
+offset_bottom = 71.0
+scale = Vector2(0.4, 0.4)
+theme_override_fonts/normal_font = ExtResource("6_jsrd8")
+theme_override_fonts/bold_font = ExtResource("6_jsrd8")
+theme_override_fonts/bold_italics_font = ExtResource("6_jsrd8")
+theme_override_fonts/italics_font = ExtResource("6_jsrd8")
+theme_override_fonts/mono_font = ExtResource("6_jsrd8")
+bbcode_enabled = true
+text = "3 [img=16x16]res://Assets/coin.png[/img]"
+
+[node name="BtnContainer" type="VBoxContainer" parent="ShopPanel/FishCon/ShopItem4"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -38.000008
+offset_right = 168.33331
+offset_bottom = 55.333374
+grow_vertical = 0
+scale = Vector2(0.3, 0.3)
+theme_override_constants/separation = 10
+
+[node name="Equip" type="Button" parent="ShopPanel/FishCon/ShopItem4/BtnContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+text = "Equip"
+
+[node name="Purchase" type="Button" parent="ShopPanel/FishCon/ShopItem4/BtnContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+text = "Purchase"
 
 [node name="FadeIn" type="Panel" parent="."]
 visible = false
@@ -731,10 +1404,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_23t3j")
 }
 
-[connection signal="pressed" from="ButtonsContainer/Play" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="ButtonsContainer/Options" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="ButtonsContainer/Customize" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="ButtonsContainer/Exit" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="ButtonsContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="ButtonsContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="ButtonsContainer/Customize" to="." method="_on_customize_pressed"]
+[connection signal="pressed" from="ButtonsContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="OptionsPanel/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="OptionsPanel/BtnCon/Audio" to="." method="_on_audio_pressed"]
 [connection signal="pressed" from="OptionsPanel/BtnCon/Screen" to="." method="_on_screen_pressed"]
@@ -742,6 +1415,5 @@ libraries = {
 [connection signal="value_changed" from="OptionsPanel/AudioCon/MusicSlider" to="OptionsPanel/AudioCon" method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="OptionsPanel/AudioCon/SFXSlider" to="OptionsPanel/AudioCon" method="_on_master_slider_value_changed"]
 [connection signal="toggled" from="OptionsPanel/ScreenCon/Fullscreen" to="OptionsPanel/ScreenCon/Fullscreen" method="_on_toggled"]
-[connection signal="pressed" from="ShopPanel/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="ShopPanel/BtnCon/Bucket" to="." method="_on_audio_pressed"]
-[connection signal="pressed" from="ShopPanel/BtnCon/Fish" to="." method="_on_screen_pressed"]
+[connection signal="pressed" from="ShopPanel/BtnContainer/Bucket" to="." method="_on_audio_pressed"]
+[connection signal="pressed" from="ShopPanel/BtnContainer/Fish" to="." method="_on_screen_pressed"]

@@ -269,7 +269,6 @@ position = Vector2(268, 156)
 shape = SubResource("RectangleShape2D_o06y3")
 
 [node name="HUD" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("8_5v1tr")
 
 [node name="Score" type="Label" parent="HUD"]
@@ -310,7 +309,6 @@ layout_mode = 2
 texture = ExtResource("10_ikia7")
 
 [node name="Pause" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("10_0fj1v")
 
 [node name="Overlay" type="Panel" parent="Pause"]
