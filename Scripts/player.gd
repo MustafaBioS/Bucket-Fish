@@ -3,6 +3,9 @@ extends CharacterBody2D
 @onready var heartsBox = $"../HUD/Hearts"
 var hearts
 @onready var anim = $"../AnimationPlayer"
+@onready var options = $"../Pause/OptionsPanel"
+@onready var sprite = $Sprite2D
+var sprite_texture = State.get_texture(true)
 
 const SPEED = 500.0
 const JUMP_VELOCITY = -400.0
@@ -25,7 +28,9 @@ func _ready() -> void:
 	State.paused = false
 	State.take_dmg = false
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
+	
+	sprite.texture = State.get_texture(true)
 	
 	if State.take_dmg == true:
 		for i in range(len(hearts)):
@@ -62,6 +67,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause") and State.transitioning == false:
 		if State.paused == true:
 			State.paused = false
+			options.visible = false
 		elif State.paused == false:
 			State.paused = true
 

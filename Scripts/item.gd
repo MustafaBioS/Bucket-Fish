@@ -1,4 +1,5 @@
 extends CharacterBody2D
+@export var item_type: String = "fish"
 
 var hearts : Array = []
 
@@ -6,10 +7,11 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
+	if not is_on_floor() and State.paused == false:
 		velocity += get_gravity() * delta
-
-	move_and_slide()
+ 
+	if State.paused == false:
+		move_and_slide()
 	
 	if position.y > 500:
 		State.health -= 1
@@ -18,6 +20,10 @@ func _physics_process(delta: float) -> void:
 
 func _on_pickup_area_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):
-		State.score += 1
-		print(State.score)
+		if item_type == "coin":
+			State.coins += 1
+			print(State.score)
+		else:
+			State.score += 1
+			print(State.score)
 		queue_free()
