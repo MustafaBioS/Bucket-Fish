@@ -23,7 +23,7 @@ func _ready() -> void:
 	State.paused = false
 	State.take_dmg = false
 	
-func _on_button_pressed() -> void:
+func _on_play_pressed() -> void:
 	State.transitioning = true
 
 	if clicked:
@@ -36,12 +36,14 @@ func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/world.tscn")
 	State.transitioning = false
 
-
-func _on_button_2_pressed() -> void:
+func _on_options_pressed() -> void:
 	if State.transitioning == false:
 		options.visible = true
 	
-func _on_button_3_pressed() -> void:
+func _on_customize_pressed() -> void:
+	pass # Replace with function body.
+	
+func _on_exit_pressed() -> void:
 	if State.transitioning == false:
 		get_tree().quit()
 
@@ -57,3 +59,5 @@ func _on_audio_pressed() -> void:
 func _on_screen_pressed() -> void:
 	screenCon.visible = true
 	audioCon.visible = false
+
+# Shop Panel Buttons
