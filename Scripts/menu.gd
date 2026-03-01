@@ -25,7 +25,7 @@ func _ready() -> void:
 	
 func _on_button_pressed() -> void:
 	State.transitioning = true
-	
+
 	if clicked:
 		State.transitioning = false
 		return
@@ -35,6 +35,7 @@ func _on_button_pressed() -> void:
 	await anim.animation_finished
 	get_tree().change_scene_to_file("res://Scenes/world.tscn")
 	State.transitioning = false
+
 
 func _on_button_2_pressed() -> void:
 	if State.transitioning == false:

@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://voanebtu6pwb"]
 
-[ext_resource type="Script" uid="uid://t3sjvg86x1y" path="res://Scripts/fish_spawner.gd" id="1_jmk7y"]
+[ext_resource type="Script" uid="uid://t3sjvg86x1y" path="res://Scripts/item_spawner.gd" id="1_cv47d"]
 
 [node name="FishSpawner" type="Node2D"]
 
 [node name="Spawn" type="Node2D" parent="."]
-script = ExtResource("1_jmk7y")
+script = ExtResource("1_cv47d")
 
 [node name="LeftMarker" type="Marker2D" parent="Spawn"]
 position = Vector2(3, 0)

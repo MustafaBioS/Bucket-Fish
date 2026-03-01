@@ -2,6 +2,9 @@ extends Node2D
 
 var spawn_pos = null
 const fish = preload("uid://drpsa7awte0bg")
+const coin = preload("uid://dxswmquq2ij0l")
+
+
 @onready var left_marker = $LeftMarker
 @onready var right_marker = $RightMarker
 
@@ -11,7 +14,14 @@ func _ready() -> void:
 	
 func spawn():
 	if State.paused == false:
-		var Fish = fish.instantiate()
+		var roll = randf()
+		var scene
+		if roll < 0.70:
+			scene = fish
+		else:
+			scene = coin
+		
+		var obj = scene.instantiate()
 		
 		var min_x = min(left_marker.global_position.x, right_marker.global_position.x)
 		var max_x = max(left_marker.global_position.x, right_marker.global_position.x)
@@ -21,11 +31,11 @@ func spawn():
 
 		print("Set Spawn, min_x: " + str(min_x) + " max_x: " + str(max_x) + " spawn_x: " + str(spawn_x) + "spawn_y: " + str(spawn_y) )
 
-		Fish.global_position = Vector2(spawn_x, spawn_y)
+		obj.global_position = Vector2(spawn_x, spawn_y)
 		
-		print("Set Fish Global Pos: " + str(Fish.global_position))
+		print("Set Fish Global Pos: " + str(obj.global_position))
 
-		add_child(Fish)
+		add_child(obj)
 		
 		print("Added Child") 
 

@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://d38u20l4vpyqy"]
+[gd_scene load_steps=3 format=3 uid="uid://d38u20l4vpyqy"]
 
 [ext_resource type="Script" uid="uid://cehces0qpxq1h" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://cqxfskpgdmomn" path="res://Assets/2d-bucket-cartoon-free-png.webp" id="1_v0iea"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(36, 38)
@@ -11,7 +10,6 @@ script = ExtResource("1_cvnsp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.06, 0.06)
-texture = ExtResource("1_v0iea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, 2)

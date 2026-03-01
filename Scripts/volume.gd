@@ -1,5 +1,12 @@
 extends Control
 
+@export var bus_name: String
+
+var bus_id
+
+func _ready() -> void:
+	bus_id = AudioServer.get_bus_index(bus_name)
 
 func _on_master_slider_value_changed(value: float) -> void:
-	pass # Replace with function body.
+	var db = linear_to_db(value)
+	AudioServer.set_bus_volume_db(bus_id, db)

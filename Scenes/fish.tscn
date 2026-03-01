@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://drpsa7awte0bg"]
 
-[ext_resource type="Script" uid="uid://dg6kg6rjxsuvp" path="res://Scripts/fish.gd" id="1_c4ibo"]
-[ext_resource type="Texture2D" uid="uid://b4qliomgvojpi" path="res://Assets/fish.png" id="1_twvwo"]
+[ext_resource type="Script" uid="uid://dg6kg6rjxsuvp" path="res://Scripts/item.gd" id="1_c4ibo"]
+[ext_resource type="Texture2D" uid="uid://bbc6ukgl4wry6" path="res://Assets/Fishs/fish-default.png" id="2_c4ibo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fqy1"]
 size = Vector2(73, 27)
@@ -12,7 +12,7 @@ script = ExtResource("1_c4ibo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_twvwo")
+texture = ExtResource("2_c4ibo")
 
 [node name="PickupArea" type="Area2D" parent="."]
 
