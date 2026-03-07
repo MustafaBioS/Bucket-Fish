@@ -4,7 +4,7 @@ extends Panel
 @onready var fish_tab = $BtnContainer/Fish
 @onready var bucket_con = $BucketContainer
 @onready var fish_con = $FishCon
-
+@onready var current_coins = $CurrentCoins
 
 @onready var bucket_items_nodes = [
 	$BucketContainer/ShopItem,
@@ -36,7 +36,8 @@ var costs = [0, 1, 2, 3]
 
 func _ready() -> void:
 	
-	
+	print(State.owned_buckets)
+	print(State.bucket_skin)
 	
 	for i in 4:
 		var bi = bucket_items_nodes[i]
@@ -45,12 +46,15 @@ func _ready() -> void:
 		var fskin = fish_data[i][0]
 		var bcost = bucket_data[i][1]
 		var fcost = fish_data[i][1]
-		bi.get_node("BtnContainer/Equip").pressed.connect(func(): State.equip(bskin, true); _refresh())
-		bi.get_node("BtnContainer/Purchase").pressed.connect(func(): State.buy(bskin, true, bcost); _refresh())
-		fi.get_node("BtnContainer/Equip").pressed.connect(func(): State.equip(fskin, false); _refresh())
-		fi.get_node("BtnContainer/Purchase").pressed.connect(func(): State.buy(fskin, false, fcost); _refresh())
+		bi.get_node("BtnContainer/Equip").pressed.connect(func(): State.equip(bskin, true); _refresh(); State.save() )
+		bi.get_node("BtnContainer/Purchase").pressed.connect(func(): State.buy(bskin, true, bcost); _refresh(); State.save() )
+		fi.get_node("BtnContainer/Equip").pressed.connect(func(): State.equip(fskin, false); _refresh(); State.save() )
+		fi.get_node("BtnContainer/Purchase").pressed.connect(func(): State.buy(fskin, false, fcost); _refresh(); State.save())
 
 	_refresh()
+
+func _process(delta: float) -> void:
+	current_coins.text = str(State.coins) + " [img=50x50]res://Assets/coin.png[/img]"
 
 func _refresh():
 	for i in 4:

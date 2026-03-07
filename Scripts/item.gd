@@ -27,6 +27,7 @@ func _on_pickup_area_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):
 		if item_type == "coin":
 			State.coins += 1
+			State.save()
 			print(State.coins)
 		else:
 			State.score += 1

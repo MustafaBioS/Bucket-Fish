@@ -568,6 +568,24 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6swd7")
 script = ExtResource("10_rc6uw")
 
+[node name="CurrentCoins" type="RichTextLabel" parent="ShopPanel"]
+layout_mode = 0
+offset_left = 278.00003
+offset_top = 9.000003
+offset_right = 512.9999
+offset_bottom = 103.999985
+scale = Vector2(0.4, 0.4)
+theme_override_fonts/normal_font = ExtResource("6_jsrd8")
+theme_override_fonts/bold_font = ExtResource("6_jsrd8")
+theme_override_fonts/bold_italics_font = ExtResource("6_jsrd8")
+theme_override_fonts/italics_font = ExtResource("6_jsrd8")
+theme_override_fonts/mono_font = ExtResource("6_jsrd8")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "0 [img=50x50]res://Assets/coin.png[/img]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ShopTitle" type="Label" parent="ShopPanel"]
 layout_mode = 1
 anchors_preset = 5
@@ -645,7 +663,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
 text = "Fish"
 
 [node name="BucketContainer" type="Control" parent="ShopPanel"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -711,7 +728,6 @@ scale = Vector2(0.3, 0.3)
 theme_override_constants/separation = 10
 
 [node name="Equipped" type="Button" parent="ShopPanel/BucketContainer/ShopItem/BtnContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -731,7 +747,6 @@ disabled = true
 text = "Equipped"
 
 [node name="Equip" type="Button" parent="ShopPanel/BucketContainer/ShopItem/BtnContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -820,7 +835,6 @@ scale = Vector2(0.3, 0.3)
 theme_override_constants/separation = 10
 
 [node name="Equipped" type="Button" parent="ShopPanel/BucketContainer/ShopItem2/BtnContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -840,7 +854,6 @@ disabled = true
 text = "Equipped"
 
 [node name="Equip" type="Button" parent="ShopPanel/BucketContainer/ShopItem2/BtnContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -929,7 +942,6 @@ scale = Vector2(0.3, 0.3)
 theme_override_constants/separation = 10
 
 [node name="Equipped" type="Button" parent="ShopPanel/BucketContainer/ShopItem3/BtnContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -949,7 +961,6 @@ disabled = true
 text = "Equipped"
 
 [node name="Equip" type="Button" parent="ShopPanel/BucketContainer/ShopItem3/BtnContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -1038,7 +1049,6 @@ scale = Vector2(0.3, 0.3)
 theme_override_constants/separation = 10
 
 [node name="Equipped" type="Button" parent="ShopPanel/BucketContainer/ShopItem4/BtnContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -1058,7 +1068,6 @@ disabled = true
 text = "Equipped"
 
 [node name="Equip" type="Button" parent="ShopPanel/BucketContainer/ShopItem4/BtnContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -1156,7 +1165,6 @@ scale = Vector2(0.3, 0.3)
 theme_override_constants/separation = 10
 
 [node name="Equipped" type="Button" parent="ShopPanel/FishCon/ShopItem/BtnContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -1176,7 +1184,6 @@ disabled = true
 text = "Equipped"
 
 [node name="Equip" type="Button" parent="ShopPanel/FishCon/ShopItem/BtnContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -1265,7 +1272,6 @@ scale = Vector2(0.3, 0.3)
 theme_override_constants/separation = 10
 
 [node name="Equipped" type="Button" parent="ShopPanel/FishCon/ShopItem2/BtnContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -1285,7 +1291,6 @@ disabled = true
 text = "Equipped"
 
 [node name="Equip" type="Button" parent="ShopPanel/FishCon/ShopItem2/BtnContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -1374,7 +1379,6 @@ scale = Vector2(0.3, 0.3)
 theme_override_constants/separation = 10
 
 [node name="Equipped" type="Button" parent="ShopPanel/FishCon/ShopItem3/BtnContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -1394,7 +1398,6 @@ disabled = true
 text = "Equipped"
 
 [node name="Equip" type="Button" parent="ShopPanel/FishCon/ShopItem3/BtnContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -1483,7 +1486,6 @@ scale = Vector2(0.3, 0.3)
 theme_override_constants/separation = 10
 
 [node name="Equipped" type="Button" parent="ShopPanel/FishCon/ShopItem4/BtnContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -1503,7 +1505,6 @@ disabled = true
 text = "Equipped"
 
 [node name="Equip" type="Button" parent="ShopPanel/FishCon/ShopItem4/BtnContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
