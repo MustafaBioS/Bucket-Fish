@@ -1,5 +1,7 @@
 extends CharacterBody2D
 @export var item_type: String = "fish"
+@onready var sprite: = $Sprite2D
+var sprite_texture = State.get_texture(false)
 
 var hearts : Array = []
 
@@ -7,6 +9,9 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
+	if item_type == "fish":
+		sprite.texture = State.get_texture(false)
+	
 	if not is_on_floor() and State.paused == false:
 		velocity += get_gravity() * delta
  

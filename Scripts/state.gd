@@ -1,7 +1,7 @@
 extends Node
 
 var score = 0
-var coins = 0
+var coins = 100
 var paused = false
 var health = 3
 var take_dmg = false
@@ -34,7 +34,7 @@ func buy(skin, is_bucket: bool, cost: int) -> bool:
 	var list = owned_buckets if is_bucket else owned_fish
 	if coins >= cost and skin not in list:
 		coins -= cost
-		if skin is BucketSkin:
+		if is_bucket:
 			owned_buckets.append(skin)
 		else:
 			owned_fish.append(skin)
