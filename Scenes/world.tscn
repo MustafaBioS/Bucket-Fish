@@ -259,6 +259,7 @@ texture = ExtResource("7_0fj1v")
 centered = false
 
 [node name="Borders" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="LeftBorder" type="CollisionShape2D" parent="Borders"]
 position = Vector2(-332, 156)
@@ -271,14 +272,37 @@ shape = SubResource("RectangleShape2D_o06y3")
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("8_5v1tr")
 
+[node name="Coins" type="RichTextLabel" parent="HUD"]
+offset_left = 482.99997
+offset_top = 22.000002
+offset_right = 656.4999
+offset_bottom = 84.5
+scale = Vector2(0.4, 0.4)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 0)
+theme_override_fonts/normal_font = ExtResource("8_k7acu")
+theme_override_fonts/bold_font = ExtResource("8_k7acu")
+theme_override_fonts/bold_italics_font = ExtResource("8_k7acu")
+theme_override_fonts/italics_font = ExtResource("8_k7acu")
+theme_override_fonts/mono_font = ExtResource("8_k7acu")
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+bbcode_enabled = true
+text = "0 [img=50x50]res://Assets/coin.png[/img]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Score" type="Label" parent="HUD"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -154.0
-offset_top = 22.0
-offset_right = -7.0
-offset_bottom = 50.0
+offset_left = -155.0
+offset_top = 46.0
+offset_right = -8.0
+offset_bottom = 74.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("8_k7acu")
@@ -309,6 +333,7 @@ layout_mode = 2
 texture = ExtResource("10_ikia7")
 
 [node name="Pause" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("10_0fj1v")
 
 [node name="Overlay" type="Panel" parent="Pause"]

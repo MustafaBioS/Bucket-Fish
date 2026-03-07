@@ -4,15 +4,21 @@ extends Control
 @onready var screenCon = $OptionsPanel/ScreenCon
 @onready var anim = $AnimationPlayer
 var clicked = false
+@onready var shop = $ShopPanel
+@onready var bucketCon: Control = $ShopPanel/BucketContainer
+@onready var fishCon: Control = $ShopPanel/FishCon
 
 func _ready() -> void:
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	options.visible = false
+	shop.visible = false
 	
 	audioCon.visible = true
 	screenCon.visible = false
+	bucketCon.visible = true
+	fishCon.visible = false
 	
 	anim.play("fade_in")
 	await anim.animation_finished
@@ -41,7 +47,8 @@ func _on_options_pressed() -> void:
 		options.visible = true
 	
 func _on_customize_pressed() -> void:
-	pass # Replace with function body.
+	if State.transitioning == false:
+		shop.visible = true
 	
 func _on_exit_pressed() -> void:
 	if State.transitioning == false:
@@ -61,3 +68,14 @@ func _on_screen_pressed() -> void:
 	audioCon.visible = false
 
 # Shop Panel Buttons
+
+func _on_shop_back_pressed() -> void:
+	shop.visible = false
+
+func _on_bucket_pressed() -> void:
+	fishCon.visible = false
+	bucketCon.visible = true
+
+func _on_fish_pressed() -> void:
+	bucketCon.visible = false
+	fishCon.visible = true

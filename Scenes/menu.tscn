@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://ckb8uvaxpwf3v" path="res://Scripts/volume.gd" id="8_q3rjx"]
 [ext_resource type="Script" uid="uid://bd2et6ewis3e8" path="res://Scripts/fullscreen.gd" id="9_6swd7"]
 [ext_resource type="Texture2D" uid="uid://b4hympioowk6i" path="res://Assets/Buckets/bucket-default.webp" id="10_7qvly"]
-[ext_resource type="Script" uid="uid://dy8pjckvjtl2p" path="res://Scripts/shopl.gd" id="10_rc6uw"]
+[ext_resource type="Script" uid="uid://dy8pjckvjtl2p" path="res://Scripts/shop.gd" id="10_rc6uw"]
 [ext_resource type="Texture2D" uid="uid://dsl4ghuyfmmqm" path="res://Assets/Buckets/bucket-green.png" id="11_g8i7c"]
 [ext_resource type="Texture2D" uid="uid://cesoqscqbse55" path="res://Assets/Buckets/bucket-pink.png" id="12_23t3j"]
 [ext_resource type="Texture2D" uid="uid://bd3cuok8yqy0m" path="res://Assets/Buckets/bucket-red.png" id="13_8ph6h"]
@@ -645,6 +645,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
 text = "Fish"
 
 [node name="BucketContainer" type="Control" parent="ShopPanel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -702,14 +703,15 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 15.0
-offset_top = -38.000008
+offset_top = -33.0
 offset_right = 168.33331
-offset_bottom = 55.333374
+offset_bottom = 26.999992
 grow_vertical = 0
 scale = Vector2(0.3, 0.3)
 theme_override_constants/separation = 10
 
-[node name="Equip" type="Button" parent="ShopPanel/BucketContainer/ShopItem/BtnContainer"]
+[node name="Equipped" type="Button" parent="ShopPanel/BucketContainer/ShopItem/BtnContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -727,6 +729,23 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_g8i7c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
 disabled = true
 text = "Equipped"
+
+[node name="Equip" type="Button" parent="ShopPanel/BucketContainer/ShopItem/BtnContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+text = "Equip"
 
 [node name="Purchase" type="Button" parent="ShopPanel/BucketContainer/ShopItem/BtnContainer"]
 layout_mode = 2
@@ -793,14 +812,35 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 15.0
-offset_top = -38.000008
+offset_top = -33.0
 offset_right = 168.33331
-offset_bottom = 55.333374
+offset_bottom = 26.999992
 grow_vertical = 0
 scale = Vector2(0.3, 0.3)
 theme_override_constants/separation = 10
 
+[node name="Equipped" type="Button" parent="ShopPanel/BucketContainer/ShopItem2/BtnContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0.5019608)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_g8i7c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+disabled = true
+text = "Equipped"
+
 [node name="Equip" type="Button" parent="ShopPanel/BucketContainer/ShopItem2/BtnContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -881,14 +921,35 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 15.0
-offset_top = -38.000008
+offset_top = -33.0
 offset_right = 168.33331
-offset_bottom = 55.333374
+offset_bottom = 26.999992
 grow_vertical = 0
 scale = Vector2(0.3, 0.3)
 theme_override_constants/separation = 10
 
+[node name="Equipped" type="Button" parent="ShopPanel/BucketContainer/ShopItem3/BtnContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0.5019608)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_g8i7c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+disabled = true
+text = "Equipped"
+
 [node name="Equip" type="Button" parent="ShopPanel/BucketContainer/ShopItem3/BtnContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -969,14 +1030,35 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 15.0
-offset_top = -38.000008
+offset_top = -33.0
 offset_right = 168.33331
-offset_bottom = 55.333374
+offset_bottom = 26.999992
 grow_vertical = 0
 scale = Vector2(0.3, 0.3)
 theme_override_constants/separation = 10
 
+[node name="Equipped" type="Button" parent="ShopPanel/BucketContainer/ShopItem4/BtnContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0.5019608)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_g8i7c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+disabled = true
+text = "Equipped"
+
 [node name="Equip" type="Button" parent="ShopPanel/BucketContainer/ShopItem4/BtnContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -1013,10 +1095,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 3.0
-offset_right = 1.0
-offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -1070,14 +1148,15 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 15.0
-offset_top = -38.000008
+offset_top = -33.0
 offset_right = 168.33331
-offset_bottom = 55.333374
+offset_bottom = 26.999992
 grow_vertical = 0
 scale = Vector2(0.3, 0.3)
 theme_override_constants/separation = 10
 
-[node name="Equip" type="Button" parent="ShopPanel/FishCon/ShopItem/BtnContainer"]
+[node name="Equipped" type="Button" parent="ShopPanel/FishCon/ShopItem/BtnContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -1095,6 +1174,23 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_g8i7c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
 disabled = true
 text = "Equipped"
+
+[node name="Equip" type="Button" parent="ShopPanel/FishCon/ShopItem/BtnContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+text = "Equip"
 
 [node name="Purchase" type="Button" parent="ShopPanel/FishCon/ShopItem/BtnContainer"]
 layout_mode = 2
@@ -1161,14 +1257,35 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 15.0
-offset_top = -38.000008
+offset_top = -33.000015
 offset_right = 168.33331
-offset_bottom = 55.333374
+offset_bottom = 27.000122
 grow_vertical = 0
 scale = Vector2(0.3, 0.3)
 theme_override_constants/separation = 10
 
+[node name="Equipped" type="Button" parent="ShopPanel/FishCon/ShopItem2/BtnContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0.5019608)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_g8i7c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+disabled = true
+text = "Equipped"
+
 [node name="Equip" type="Button" parent="ShopPanel/FishCon/ShopItem2/BtnContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -1249,14 +1366,35 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 15.0
-offset_top = -38.000008
+offset_top = -33.0
 offset_right = 168.33331
-offset_bottom = 55.333374
+offset_bottom = 27.0
 grow_vertical = 0
 scale = Vector2(0.3, 0.3)
 theme_override_constants/separation = 10
 
+[node name="Equipped" type="Button" parent="ShopPanel/FishCon/ShopItem3/BtnContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0.5019608)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_g8i7c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+disabled = true
+text = "Equipped"
+
 [node name="Equip" type="Button" parent="ShopPanel/FishCon/ShopItem3/BtnContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -1337,14 +1475,35 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 15.0
-offset_top = -38.000008
+offset_top = -33.0
 offset_right = 168.33331
-offset_bottom = 55.333374
+offset_bottom = 26.999992
 grow_vertical = 0
 scale = Vector2(0.3, 0.3)
 theme_override_constants/separation = 10
 
+[node name="Equipped" type="Button" parent="ShopPanel/FishCon/ShopItem4/BtnContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0.5019608)
+theme_override_fonts/font = ExtResource("6_jsrd8")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jsrd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbdvm")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_g8i7c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jsrd8")
+disabled = true
+text = "Equipped"
+
 [node name="Equip" type="Button" parent="ShopPanel/FishCon/ShopItem4/BtnContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -1415,5 +1574,6 @@ libraries = {
 [connection signal="value_changed" from="OptionsPanel/AudioCon/MusicSlider" to="OptionsPanel/AudioCon" method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="OptionsPanel/AudioCon/SFXSlider" to="OptionsPanel/AudioCon" method="_on_master_slider_value_changed"]
 [connection signal="toggled" from="OptionsPanel/ScreenCon/Fullscreen" to="OptionsPanel/ScreenCon/Fullscreen" method="_on_toggled"]
-[connection signal="pressed" from="ShopPanel/BtnContainer/Bucket" to="." method="_on_audio_pressed"]
-[connection signal="pressed" from="ShopPanel/BtnContainer/Fish" to="." method="_on_screen_pressed"]
+[connection signal="pressed" from="ShopPanel/ShopBack" to="." method="_on_shop_back_pressed"]
+[connection signal="pressed" from="ShopPanel/BtnContainer/Bucket" to="." method="_on_bucket_pressed"]
+[connection signal="pressed" from="ShopPanel/BtnContainer/Fish" to="." method="_on_fish_pressed"]
