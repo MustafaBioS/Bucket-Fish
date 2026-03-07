@@ -1,7 +1,9 @@
 extends Node
 
+const SAVE_PATH = "user://save.json"
+
 var score = 0
-var coins = 100
+var coins = 0
 var paused = false
 var health = 3
 var take_dmg = false
@@ -30,6 +32,9 @@ var fish_textures = {
 	FishSkin.RED: preload("res://Assets/Fishs/fish-red.png"),
 }
 
+func _ready() -> void:
+	load_save()
+
 func buy(skin, is_bucket: bool, cost: int) -> bool:
 	var list = owned_buckets if is_bucket else owned_fish
 	if coins >= cost and skin not in list:
@@ -54,3 +59,29 @@ func get_texture(is_bucket: bool) -> Texture2D:
 		return bucket_textures[bucket_skin]
 	else:
 		return fish_textures[fish_skin]
+
+func save():
+	var data = {
+		"coins": coins,
+		"owned_buckets": owned_buckets,
+		"owned_fish": owned_fish,
+		"bucket_skin": bucket_skin,
+		"fish_skin": fish_skin,
+	}
+	
+	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	file.store_string(JSON.stringify(data))
+	file.close()
+	
+func load_save():
+	if not FileAccess.file_exists(SAVE_PATH):
+		return
+	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	var data = JSON.parse_string(file.get_as_text())
+	file.close()
+	
+	coins = int(data["coins"])
+	owned_buckets = data["owned_buckets"].map(func(x): return int(x))
+	owned_fish = data["owned_fish"].map(func(x): return int(x))
+	bucket_skin = data["bucket_skin"]
+	fish_skin = data["fish_skin"]

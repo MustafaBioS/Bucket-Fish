@@ -9,14 +9,14 @@ const coin = preload("uid://dxswmquq2ij0l")
 @onready var right_marker = $RightMarker
 
 func _ready() -> void:
-	if State.paused == false:
+	if State.paused == false and State.is_dead == false:
 		randomize()
 	
 func spawn():
 	if State.paused == false:
 		var roll = randf()
 		var scene
-		if roll < 0.60:
+		if roll < 0.85:
 			scene = fish
 		else:
 			scene = coin

@@ -9,6 +9,7 @@ var clicked = false
 @onready var fishCon: Control = $ShopPanel/FishCon
 
 func _ready() -> void:
+	State.load_save()
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
